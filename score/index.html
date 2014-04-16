@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                width: 100%;
+                height: 100%;
+                border-collapse: collapse;
+                background-color: #ccc;
+            }
+            td {
+                height: 100%;
+                min-width: 100px;
+                vertical-align: bottom;
+            }
+            td div {
+                text-align: center;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+            td div.bar {
+                height: 50%;
+                margin: 0 10px;
+                position: relative;
+                background-color: #abc;
+                transition: height 1s ease-out 100ms;
+            }
+            td div.score {
+                
+            }
+            td div.follow {
+                width: 100px;
+                margin-left: -50px;
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tbody>
+                <tr></tr>
+            </tbody>
+        </table>
+        <script>
+            var incrementScore = 1;
+            var startScore = 20;
+            
+            function Player() {
+                var scoreValue = startScore;
+                
+                var cell = document.createElement('td');
+                
+                var bar = document.createElement('div');
+                bar.setAttribute('class', 'bar');
+                cell.appendChild(bar);
+                
+                var score = document.createElement('div');
+                score.setAttribute('class', 'score');
+                score.innerHTML = scoreValue;
+                bar.appendChild(score);
+                
+                var follow = document.createElement('div');
+                follow.setAttribute('class', 'follow');
+                bar.appendChild(follow);
+                
+                var startY;
+                var pixelsPerIncrement = 10;
+                
+                cell.onmousedown = function(ev) {
+                    startY = ev.clientY;
+                };
+                
+                cell.onmouseup = function(ev) {
+                    var deltaScore = (startY - ev.clientY) / pixelsPerIncrement >> 0;
+                    scoreValue += deltaScore;
+                    score.innerHTML = scoreValue;
+					follow.innerHTML = null;
+                    startY = undefined;
+					balancePlayers();
+                };
+                
+                cell.onmousemove = function(ev) {
+                    if(startY) {
+                        var deltaScore = (startY - ev.clientY) / pixelsPerIncrement >> 0;
+                        follow.innerHTML = deltaScore;
+                        follow.style.bottom = (cell.offsetHeight - ev.clientY) + 'px';
+                    }
+                };
+				
+				cell.getScore = function() {
+					return scoreValue;
+				};
+				
+				cell.setBarPercentage = function(percentage) {
+					bar.style.height = percentage + '%';
+				}
+                
+                return cell;
+            }
+			
+            var row = document.getElementsByTagName('tr')[0];
+            var players = [];
+			
+            function addPlayer() {
+                var player = new Player();
+                players.push(player);
+                row.appendChild(player);
+            }
+			
+			function balancePlayers() {
+				var topScore = -Infinity;
+				for(var n in players) {
+					var score = players[n].getScore();
+					if(score > topScore)
+						topScore = score;
+				}
+				for(var n in players) {
+					var score = players[n].getScore();
+					var percentage = score / topScore * 100;
+					if(percentage < 0)
+						percentage = 0;
+					players[n].setBarPercentage(percentage);
+				}
+			}
+            addPlayer();
+            addPlayer();
+        </script>
+    </body>
+</html>
