@@ -100,31 +100,35 @@
 				}
                 
                 cell.onmousedown = function(evt) {
+					evt.preventDefault();
 					inputDown(evt.clientY);
                 };
                 
                 cell.onmouseup = function(evt) {
+					evt.preventDefault();
 					inputUp(evt.clientY);
                 };
                 
                 cell.onmousemove = function(evt) {
+					evt.preventDefault();
 					inputMove(evt.clientY);
                 };
 				
 				cell.ontouchstart = function(evt) {
+					evt.preventDefault();
 					if(evt.touches.length == 1)
 						inputDown(evt.touches[0].clientY);
 				};
 				
 				cell.ontouchend = function(evt) {
-					if(evt.touches.length == 1)
-						inputUp(evt.touches[0].clientY);
+					evt.preventDefault();
+					inputUp(evt.touches[0].clientY);
 				};
 				
 				cell.ontouchmove = function(evt) {
+					evt.preventDefault();
 					if(evt.touches.length == 1)
 						inputMove(evt.touches[0].clientY);
-					//evt.preventDefault();
 				};
 				
 				cell.getScore = function() {
