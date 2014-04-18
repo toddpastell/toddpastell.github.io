@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+		<meta name="viewport" content="width=devtice-width, user-scalable=no">
         <style>
             html {
                 height: 100%;
@@ -57,7 +58,7 @@
             var startScore = 20;
             
             function Player() {
-                var scoreValue = startScore;
+                var scorevtalue = startScore;
                 
                 var cell = document.createElement('td');
                 
@@ -67,7 +68,7 @@
                 
                 var score = document.createElement('div');
                 score.setAttribute('class', 'score');
-                score.innerHTML = scoreValue;
+                score.innerHTML = scorevtalue;
                 bar.appendChild(score);
                 
                 var follow = document.createElement('div');
@@ -77,29 +78,33 @@
                 var startY;
                 var pixelsPerIncrement = 10;
                 
-                cell.onmousedown = function(ev) {
-                    startY = ev.clientY;
+                cell.onmousedown = function(evt) {
+                    startY = evt.clientY;
                 };
                 
-                cell.onmouseup = function(ev) {
-                    var deltaScore = (startY - ev.clientY) / pixelsPerIncrement >> 0;
-                    scoreValue += deltaScore;
-                    score.innerHTML = scoreValue;
+                cell.onmouseup = function(evt) {
+                    var deltaScore = (startY - evt.clientY) / pixelsPerIncrement >> 0;
+                    scorevtalue += deltaScore;
+                    score.innerHTML = scorevtalue;
 					follow.innerHTML = null;
                     startY = undefined;
 					balancePlayers();
                 };
                 
-                cell.onmousemove = function(ev) {
+                cell.onmousemove = function(evt) {
                     if(startY) {
-                        var deltaScore = (startY - ev.clientY) / pixelsPerIncrement >> 0;
+                        var deltaScore = (startY - evt.clientY) / pixelsPerIncrement >> 0;
                         follow.innerHTML = deltaScore;
-                        follow.style.bottom = (cell.offsetHeight - ev.clientY) + 'px';
+                        follow.style.bottom = (cell.offsetHeight - evt.clientY) + 'px';
                     }
                 };
 				
+				cell.touchstart = function(evt) {
+					alert(evt.changedTouches);
+				};
+				
 				cell.getScore = function() {
-					return scoreValue;
+					return scorevtalue;
 				};
 				
 				cell.setBarPercentage = function(percentage) {
