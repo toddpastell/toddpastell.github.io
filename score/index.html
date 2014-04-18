@@ -122,7 +122,7 @@
 				
 				cell.ontouchend = function(evt) {
 					evt.preventDefault();
-					if(evt.touches.length == 1)
+					if(evt.changedTouches.length == 1)
 						inputUp(evt.changedTouches[0].clientY);
 				};
 				
