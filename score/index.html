@@ -77,30 +77,54 @@
                 
                 var startY;
                 var pixelsPerIncrement = 10;
-                
-                cell.onmousedown = function(evt) {
-                    startY = evt.clientY;
-                };
-                
-                cell.onmouseup = function(evt) {
-                    var deltaScore = (startY - evt.clientY) / pixelsPerIncrement >> 0;
+				
+				function inputDown(clientY) {
+					startY = clientY;
+				}
+				
+				function inputUp(clientY) {
+					var deltaScore = (startY - clientY) / pixelsPerIncrement >> 0;
                     scorevtalue += deltaScore;
                     score.innerHTML = scorevtalue;
 					follow.innerHTML = null;
                     startY = undefined;
 					balancePlayers();
+				}
+				
+				function inputMove(clientY) {
+					if(startY) {
+                        var deltaScore = (startY - clientY) / pixelsPerIncrement >> 0;
+                        follow.innerHTML = deltaScore;
+                        follow.style.bottom = (cell.offsetHeight - clientY) + 'px';
+                    }
+				}
+                
+                cell.onmousedown = function(evt) {
+					inputDown(evt.clientY);
+                };
+                
+                cell.onmouseup = function(evt) {
+					inputUp(evt.clientY);
                 };
                 
                 cell.onmousemove = function(evt) {
-                    if(startY) {
-                        var deltaScore = (startY - evt.clientY) / pixelsPerIncrement >> 0;
-                        follow.innerHTML = deltaScore;
-                        follow.style.bottom = (cell.offsetHeight - evt.clientY) + 'px';
-                    }
+					inputMove(evt.clientY);
                 };
 				
 				cell.ontouchstart = function(evt) {
-					alert(evt.changedTouches);
+					if(evt.touches.length == 1)
+						inputDown(evt.touches[0].clientY);
+				};
+				
+				cell.ontouchend = function(evt) {
+					if(evt.touches.length == 1)
+						inputUp(evt.touches[0].clientY);
+				};
+				
+				cell.ontouchmove = function(evt) {
+					if(evt.touches.length == 1)
+						inputMove(evt.touches[0].clientY);
+					//evt.preventDefault();
 				};
 				
 				cell.getScore = function() {
