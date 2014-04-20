@@ -3,6 +3,7 @@
     <head>
 		<meta name="viewport" content="width=device-width, user-scalable=no">
         <style>
+			@import url(http://fonts.googleapis.com/css?family=Roboto);
             html {
                 height: 100%;
             }
@@ -10,12 +11,26 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
+				background-color: #eee;
+				font-family: 'Roboto', sans-serif;
             }
+			a {
+				width: 40px;
+				height: 40px;
+				display: block;
+				float: right;
+				line-height: 40px;
+				border-width: 3px;
+				border-style: solid;
+				border-radius: 50%;
+				text-align: center;
+				text-decoration: none;
+				
+			}
             table {
                 width: 100%;
                 height: 100%;
                 border-collapse: collapse;
-                background-color: #ccc;
             }
             td {
                 height: 100%;
@@ -48,9 +63,12 @@
         </style>
     </head>
     <body>
+		<nav>
+			<a href="#" onclick="addPlayer()">Add</a>
+		</nav>
         <table>
             <tbody>
-                <tr></tr>
+                <tr id="players"></tr>
             </tbody>
         </table>
         <script>
@@ -143,7 +161,7 @@
                 return cell;
             }
 			
-            var row = document.getElementsByTagName('tr')[0];
+            var row = document.getElementById('players');
             var players = [];
 			
             function addPlayer() {
