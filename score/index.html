@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
-    <head>
+	<head>
 		<meta name="viewport" content="width=device-width, user-scalable=no">
         <style>
-			@import url(http://fonts.googleapis.com/css?family=Roboto);
+			@import url(http://fonts.googleapis.com/css?family=Roboto:500);
             html {
                 height: 100%;
             }
@@ -11,21 +11,34 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
-				background-color: #eee;
 				font-family: 'Roboto', sans-serif;
+				font-size: 20px;
+				color: #fff;
             }
+			nav {
+				position: fixed;
+				right: 2px;
+				top: 2px;
+				z-index: 1;
+			}
 			a {
 				width: 40px;
 				height: 40px;
 				display: block;
-				float: right;
 				line-height: 40px;
-				border-width: 3px;
+				border-width: 2px;
 				border-style: solid;
 				border-radius: 50%;
+				border-color: #234;
+				background-color: #234;
+				color: #fff;
 				text-align: center;
 				text-decoration: none;
 				
+			}
+			a:hover, a:active {
+				background-color: #fff;
+				color: #234;
 			}
             table {
                 width: 100%;
@@ -54,17 +67,22 @@
                 
             }
             td div.follow {
-                width: 100px;
-                margin-left: -50px;
+                width: 40px;
+				height: 40px;
+                margin-left: -20px;
                 position: absolute;
                 left: 50%;
                 bottom: 0;
+				line-height: 40px;
+				border-radius: 50%;
+				background-color: #234;
+				text-align: center;
             }
         </style>
     </head>
     <body>
 		<nav>
-			<a href="#" onclick="addPlayer()">Add</a>
+			<a href="#" onclick="addPlayer()">&equiv;</a>
 		</nav>
         <table>
             <tbody>
@@ -118,34 +136,34 @@
 				}
                 
                 cell.onmousedown = function(evt) {
-					evt.preventDefault();
+					//evt.preventDefault();
 					inputDown(evt.clientY);
                 };
                 
                 cell.onmouseup = function(evt) {
-					evt.preventDefault();
+					//evt.preventDefault();
 					inputUp(evt.clientY);
                 };
                 
                 cell.onmousemove = function(evt) {
-					evt.preventDefault();
+					//evt.preventDefault();
 					inputMove(evt.clientY);
                 };
 				
 				cell.ontouchstart = function(evt) {
-					evt.preventDefault();
+					//evt.preventDefault();
 					if(evt.touches.length == 1)
 						inputDown(evt.touches[0].clientY);
 				};
 				
 				cell.ontouchend = function(evt) {
-					evt.preventDefault();
+					//evt.preventDefault();
 					if(evt.changedTouches.length == 1)
 						inputUp(evt.changedTouches[0].clientY);
 				};
 				
 				cell.ontouchmove = function(evt) {
-					evt.preventDefault();
+					//evt.preventDefault();
 					if(evt.touches.length == 1)
 						inputMove(evt.changedTouches[0].clientY);
 				};
