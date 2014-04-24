@@ -139,8 +139,6 @@
 						var deltaScore = (startY - clientY) / pixelsPerIncrement >> 0;
 						follow.innerHTML = (deltaScore < 0 ? '' : '+') + deltaScore;
 						follow.style.bottom = (cell.offsetHeight - clientY + 20) + 'px';
-						if(deltaScore != 0)
-							return true;
                     }
 				}
                 
@@ -162,14 +160,14 @@
 				};
 				
 				cell.ontouchend = function(evt) {
-					if(evt.changedTouches.length == 1)
+					if(evt.touches.length == 1)
 						inputUp(evt.changedTouches[0].clientY);
 				};
 				
 				cell.ontouchmove = function(evt) {
+					evt.preventDefault();
 					if(evt.touches.length == 1)
-						if(inputMove(evt.changedTouches[0].clientY))
-							evt.preventDefault();
+						inputMove(evt.changedTouches[0].clientY);
 				};
 				
 				cell.getScore = function() {
