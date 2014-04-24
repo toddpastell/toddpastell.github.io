@@ -155,6 +155,7 @@
                 };
 				
 				cell.ontouchstart = function(evt) {
+					evt.preventDefault();
 					if(evt.touches.length == 1)
 						inputDown(evt.touches[0].clientY);
 				};
