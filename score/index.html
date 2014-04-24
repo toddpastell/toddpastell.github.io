@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>Score</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no">
         <style>
 			@import url(http://fonts.googleapis.com/css?family=Roboto:500);
@@ -77,7 +78,12 @@
 				border-radius: 50%;
 				background-color: #234;
 				text-align: center;
+				opacity: 1;
             }
+			td div.follow.fade {
+				transition: opacity 1s ease-out 100ms;
+				opacity: 0;
+			}
         </style>
     </head>
     <body>
@@ -91,6 +97,7 @@
         </table>
         <script>
             var incrementScore = 1;
+			var pixelsPerIncrement = 20;
             var startScore = 20;
             
             function Player() {
@@ -99,54 +106,51 @@
                 var cell = document.createElement('td');
                 
                 var bar = document.createElement('div');
-                bar.setAttribute('class', 'bar');
+                bar.className = 'bar';
                 cell.appendChild(bar);
                 
                 var score = document.createElement('div');
-                score.setAttribute('class', 'score');
+                score.className = 'score';
                 score.innerHTML = scorevtalue;
                 bar.appendChild(score);
                 
                 var follow = document.createElement('div');
-                follow.setAttribute('class', 'follow');
+                follow.className = 'follow fade';
                 bar.appendChild(follow);
                 
                 var startY;
-                var pixelsPerIncrement = 10;
-				
+                
 				function inputDown(clientY) {
 					startY = clientY;
+					follow.className = 'follow';
 				}
 				
 				function inputUp(clientY) {
 					var deltaScore = (startY - clientY) / pixelsPerIncrement >> 0;
                     scorevtalue += deltaScore;
                     score.innerHTML = scorevtalue;
-					follow.innerHTML = null;
                     startY = undefined;
+					follow.className = 'follow fade';
 					balancePlayers();
 				}
 				
 				function inputMove(clientY) {
 					if(startY) {
-                        var deltaScore = (startY - clientY) / pixelsPerIncrement >> 0;
-                        follow.innerHTML = deltaScore;
-                        follow.style.bottom = (cell.offsetHeight - clientY) + 'px';
+						var deltaScore = (startY - clientY) / pixelsPerIncrement >> 0;
+						follow.innerHTML = (deltaScore < 0 ? '' : '+') + deltaScore;
+						follow.style.bottom = (cell.offsetHeight - clientY + 20) + 'px';
                     }
 				}
                 
                 cell.onmousedown = function(evt) {
-					//evt.preventDefault();
 					inputDown(evt.clientY);
                 };
                 
                 cell.onmouseup = function(evt) {
-					//evt.preventDefault();
 					inputUp(evt.clientY);
                 };
                 
                 cell.onmousemove = function(evt) {
-					//evt.preventDefault();
 					inputMove(evt.clientY);
                 };
 				
@@ -157,13 +161,11 @@
 				};
 				
 				cell.ontouchend = function(evt) {
-					//evt.preventDefault();
 					if(evt.changedTouches.length == 1)
 						inputUp(evt.changedTouches[0].clientY);
 				};
 				
 				cell.ontouchmove = function(evt) {
-					//evt.preventDefault();
 					if(evt.touches.length == 1)
 						inputMove(evt.changedTouches[0].clientY);
 				};
