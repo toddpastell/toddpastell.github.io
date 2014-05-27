@@ -1,0 +1,96 @@
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.col {
+	box-sizing: border-box;
+	float: left;	
+}
+.span1-2 {
+	width: 50.00%;
+}
+.span1-3 {
+	width: 33.33%;
+}
+.span2-3 {
+	width: 66.66%;
+}
+.span1-4 {
+	width: 25.00%;
+}
+.span2-4 {
+	width: 50.00%;
+}
+.span3-4 {
+	width: 75.00%;
+}
+.span1-5 {
+	width: 20.00%;
+}
+.span2-5 {
+	width: 40.00%;
+}
+.span3-5 {
+	width: 60.00%;
+}
+.span4-5 {
+	width: 80.00%;
+}
+.span1-6 {
+	width: 16.66%;
+}
+.span2-6 {
+	width: 33.33%;
+}
+.span3-6 {
+	width: 50.00%;
+}
+.span4-6 {
+	width: 66.66%;
+}
+.span5-6 {
+	width: 83.33%;
+}
+.span1-7 {
+	width: 14.28%;
+}
+.span2-7 {
+	width: 28.56%;
+}
+.span3-7 {
+	width: 42.84%;
+}
+.span4-7 {
+	width: 57.12%;
+}
+.span5-7 {
+	width: 71.40%;
+}
+.span6-7 {
+	width: 85.68%;
+}
+.span1-8 {
+	width: 12.50%;
+}
+.span2-8 {
+	width: 25.00%;
+}
+.span3-8 {
+	width: 37.50%;
+}
+.span4-8 {
+	width: 50.00%;
+}
+.span5-8 {
+	width: 62.50%;
+}
+.span6-8 {
+	width: 75.00%;
+}
+.span7-8 {
+	width: 87.50%;
+}
+@media (max-width: 570px) {
+	.col { width: 100%; }
+}
