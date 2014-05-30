@@ -63,10 +63,10 @@ a {
 	left: 0.5em;
 }
 @media (max-width: 1010px) {
-	html { font-size: 14px; }
+	/*html { font-size: 14px; }*/
 }
 @media (max-width: 780px) {
-	html { font-size: 10px; }
+	/*html { font-size: 10px; }*/
 }
 @media (max-width: 570px) {
 	
