@@ -91,6 +91,6 @@
 .span7-8 {
 	width: 87.50%;
 }
-@media (max-width: 570px) {
+@media (max-width: 800px) {
 	.col { width: 100%; }
 }

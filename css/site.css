@@ -61,14 +61,6 @@ a {
 .content a:hover:after {
 	left: 0.5em;
 }
-@media (max-width: 1010px) {
-	.pad { padding: 0 1em; }
-	.logo a { padding: 1em; }
-}
-@media (max-width: 780px) {
-	.pad { padding: 0 0.5em; }
-	.logo a { padding: 0.5em; }
-}
-@media (max-width: 570px) {
+@media (max-width: 800px) {
 	
 }
