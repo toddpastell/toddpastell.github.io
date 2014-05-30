@@ -37,10 +37,11 @@ a {
 .nav a {
 	display: block;
 	text-align: center;
-	transition: background-color 1000ms;
+	transition: all 1000ms;
 }
-.nav a:hover {
-	background-color: #ddd;
+.nav a:hover, .nav a:active {
+	color: #fff;
+	background-color: #fc0;
 }
 .logo {
 	background-color: #0cf;
@@ -64,7 +65,6 @@ a {
 @media (max-width: 800px) {
 	.nav { border: none; }
 	.hrz-rule {
-		display: block;
 		border-bottom: 1px solid #ddd;
 	}
 }
