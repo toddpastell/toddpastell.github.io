@@ -46,7 +46,7 @@ a {
 	background-color: #0cf;
 }
 .logo a {
-	padding: 1em;
+	padding: 1em 0;
 	color: #fff;
 }
 .content a {
@@ -62,5 +62,9 @@ a {
 	left: 0.5em;
 }
 @media (max-width: 800px) {
-	
+	.nav { border: none; }
+	.hrz-rule {
+		display: block;
+		border-bottom: 1px solid #ddd;
+	}
 }
