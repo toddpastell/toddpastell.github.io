@@ -5,12 +5,30 @@ layout: main
 <p>
 	<label>
 		<div>Select an image to convert into ASCII</div>
-		<input type="file">
+		<input type="file" accept="image/*" id="input">
 	</label>
 </p>
 <p>
-	<canvas></canvas>
+	<canvas id="canvas"></canvas>
+</p>
+<p>
+	<textarea id="textarea"></textarea>
 </p>
 <script type="text/javascript">
-	
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+	var img = new Image();
+	img.addEventListener('load', function(evt) {
+		canvas.width = img.width;
+		canvas.height = img.height;
+		context.drawImage(img, 0, 0);
+	});
+	var input = document.getElementById('input');
+	input.addEventListener('change', function(evt) {
+		var fr = new FileReader();
+		fr.addEventListener('load', function(evt) {
+			img.src = this.result;
+		});
+		fr.readAsDataURL(this.files[0]);
+	});
 </script>
