@@ -1,6 +1,5 @@
--	name: ASCII Image Converter
-	url: /projects/ascii-img
+- name: ASCII Image Converter
+  url: /projects/ascii-img
 	
--	name: Test Project
-	url: /test
-	
+- name: Test Project
+  url: /test
