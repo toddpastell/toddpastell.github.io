@@ -1,24 +1,30 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Todd Pastell</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="/css/main.css">
-    </head>
-    <body>
-        <header>
-            <h1>Todd Pastell</h1>
-            <nav>
-                <a href="#">About</a>
-                <a href="#">Projects</a>
-                <a href="#">About</a>
-            </nav>
-        </header>
-        <main>
-            {{ content }}
-        </main>
-        <footer>
-            :)
-        </footer>
-    </body>
+	<head>
+		<title>Todd Pastell</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/css/grid.css">
+		<link rel="stylesheet" type="text/css" href="/css/site.css">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto:300">
+	</head>
+	<body>
+		<div class="site">
+			<div class="row">
+				<div class="col span1-4">
+					<div class="nav pad">
+						<h1><a class="btn" href="/">Todd<br>Pastell</a></h1>
+						<h2><a href="/projects">Projects</a></h2>
+						<h2><a href="#">About</a></h2>
+						<div class="hrz-rule"></div>
+					</div>
+				</div>
+				<div class="col span3-4">
+					<div class="content pad">
+{{ content }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

@@ -17,11 +17,34 @@ a {
 	color: #0cf;
 	text-decoration: none;
 }
-a:hover, a:active {
-	text-decoration: underline;
+a:hover, a:active, a:focus {
+	opacity: 0.5;
+	outline: none;
+}
+input, textarea, select {
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	padding: 1em;
+}
+input[type=text], input[type=file], textarea, select {
+	display: block;
+	width: 100%;
+}
+textarea {
+	resize: vertical;
+}
+input:focus, textarea:focus, select:focus {
+	border-color: #0cf;
+	outline: none;
 }
 .btn {
-	border: 2px solid #000;
+	display: inline-block;
+	padding: 1em;
+	background-color: #0cf;
+	color: #fff;
+}
+.rnd {
+	border-radius: 50%;
 }
 .well {
 	background-color: #ddd;
@@ -40,6 +63,9 @@ a:hover, a:active {
 .nav a {
 	display: block;
 	text-align: center;
+}
+.nav .btn {
+	padding: 1em 0;
 }
 .logo {
 	background-color: #0cf;
