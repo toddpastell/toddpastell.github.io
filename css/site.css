@@ -18,7 +18,7 @@ a {
 	text-decoration: none;
 }
 a:hover, a:active, a:focus {
-	opacity: 0.5;
+	text-decoration: underline;
 	outline: none;
 }
 input, textarea, select {
