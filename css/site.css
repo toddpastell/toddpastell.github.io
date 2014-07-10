@@ -15,6 +15,7 @@ p {
 }
 a {
 	color: #0cf;
+	font-family: 'Roboto Condensed', sans-serif;
 	text-decoration: none;
 }
 a:hover, a:active, a:focus {
