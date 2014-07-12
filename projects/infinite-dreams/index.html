@@ -1,4 +1,24 @@
 ---
 layout: main
 ---
+<style>
+	p {
+		animation: type 4s steps(60, end); 
+	}
+</style>
 <h2>Infinite Dreams</h2>
+<div id="story">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa egestas risus aliquam ultricies. Proin fringilla elit at pellentesque luctus. Suspendisse laoreet massa turpis, quis rutrum augue pellentesque vel. Maecenas mollis consequat porta</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa egestas risus aliquam ultricies. Proin fringilla elit at pellentesque luctus. Suspendisse laoreet massa turpis, quis rutrum augue pellentesque vel. Maecenas mollis consequat porta</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa egestas risus aliquam ultricies. Proin fringilla elit at pellentesque luctus. Suspendisse laoreet massa turpis, quis rutrum augue pellentesque vel. Maecenas mollis consequat porta</p>
+</div>
+<a class="btn" href="#" onclick="test()">Option one</a>
+<a class="btn" href="#" onclick="test()">Option two</a>
+<script>
+	var story = document.getElementById('story');
+	function test() {
+		var p = document.createElement('p');
+		p.innerHTML = "This is a test paragraph for the story and it should be about two lines long for testing purposes.";
+		story.appendChild(p);
+	}
+</script>
