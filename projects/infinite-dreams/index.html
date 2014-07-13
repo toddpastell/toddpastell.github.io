@@ -1,6 +1,11 @@
 ---
 layout: main
 ---
+<style>
+	#choices .btn {
+		margin: 0 0.25em 0.25em 0;
+	}
+</style>
 <h2>Infinite Dreams</h2>
 <div id="narrative"></div>
 <div id="choices"></div>
@@ -21,7 +26,9 @@ layout: main
 			var page = this.pages[pageName];
 			if(!page)
 				console.warn('Page not found: ' + pageName);
-			this.narrativeElement.appendChild(page.element.cloneNode(true));
+			var pageElement = page.element.cloneNode(true);
+			this.narrativeElement.appendChild(pageElement);
+			Typer(pageElement, page.text, 50);
 			while(this.choicesElement.hasChildNodes()) {
 				this.choicesElement.removeChild(this.choicesElement.lastChild);
 			}
@@ -55,7 +62,6 @@ layout: main
 		this.choices;
 		
 		this.element = document.createElement('p');
-		this.element.innerHTML = text;
 		
 		this.setChoices = function(choices) {
 			this.choices = choices;
@@ -76,6 +82,17 @@ layout: main
 			evt.preventDefault();
 			choice.page.story.loadPage(choice.nextPage);
 		});
+	}
+	
+	function Typer(element, text, interval) {
+		var index = 0;
+		var id = setInterval(function() {
+			element.innerHTML += text[index];
+			index++;
+			if(!text[index])
+				clearInterval(id);
+				
+		}, interval);
 	}
 	
 	var infiniteDreams = new Story({
