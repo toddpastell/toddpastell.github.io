@@ -1,106 +1,12 @@
 ---
 layout: main
 styles: [story.css]
-scripts: [first.js, second.js]
+scripts: [story.js, page.js, choice.js, typer.js]
 ---
-<style>
-	#narrative p:last-child:after {
-		content: "\25AE";
-	}
-	
-	#choices .btn {
-		margin: 0 0.25em 0.25em 0;
-	}
-</style>
 <h2>Infinite Dreams</h2>
 <div id="narrative"></div>
 <div id="choices"></div>
 <script>
-	function test() {
-		var p = document.createElement('p');
-		p.innerHTML = "This is a test paragraph for the story and it should be about two lines long for testing purposes.";
-		story.appendChild(p);
-	}
-	
-	function Story(pagesDict) {
-		this.narrativeElement = document.getElementById('narrative');
-		this.choicesElement = document.getElementById('choices');
-		this.pages = {};
-		this.activePage;
-		
-		this.loadPage = function(pageName) {
-			var page = this.pages[pageName];
-			if(!page)
-				console.warn('Page not found: ' + pageName);
-			var pageElement = page.element.cloneNode(true);
-			this.narrativeElement.appendChild(pageElement);
-			Typer(pageElement, page.text, 50);
-			while(this.choicesElement.hasChildNodes()) {
-				this.choicesElement.removeChild(this.choicesElement.lastChild);
-			}
-			for(var index in page.choices) {
-				var choice = page.choices[index];
-				this.choicesElement.appendChild(choice.element);
-			}
-		};
-		
-		for(var pageName in pagesDict) {
-			var pageDict = pagesDict[pageName];
-			var page = new Page(this, pageDict.text);
-			var choices = [];
-			for(var index in pageDict.choices) {
-				var choiceDict = pageDict.choices[index];
-				choices.push(new Choice(page, choiceDict.next, choiceDict.text));
-			}
-			page.setChoices(choices);
-			if(this.pages[pageName])
-				console.warn('Overwritting existing page: ' + pageName);
-			if(!this.activePage)
-				this.activePage = pageName;
-			this.pages[pageName] = page;
-		}
-		this.loadPage(this.activePage);
-	}
-	
-	function Page(story, text) {
-		this.story = story;
-		this.text = text;
-		this.choices;
-		
-		this.element = document.createElement('p');
-		
-		this.setChoices = function(choices) {
-			this.choices = choices;
-		};
-	}
-	
-	function Choice(page, nextPage, text) {
-		this.page = page;
-		this.nextPage = nextPage;
-		this.text = text;
-		var choice = this;
-		
-		this.element = document.createElement('a');
-		this.element.setAttribute('class', 'btn');
-		this.element.setAttribute('href', '#' + nextPage);
-		this.element.innerHTML = text;
-		this.element.addEventListener('click', function(evt) {
-			evt.preventDefault();
-			choice.page.story.loadPage(choice.nextPage);
-		});
-	}
-	
-	function Typer(element, text, interval) {
-		var index = 0;
-		var id = setInterval(function() {
-			element.innerHTML += text[index];
-			index++;
-			if(!text[index])
-				clearInterval(id);
-				
-		}, interval);
-	}
-	
 	var infiniteDreams = new Story({
 		'intro': {
 			text: 'You are awaken by the sounds of sirens. The scent of smoke and fire is in the air.',
