@@ -18,6 +18,7 @@ function Story(pagesDict) {
 			var choice = page.choices[index];
 			this.choicesElement.appendChild(choice.element);
 		}
+		scrollTo(0, document.body.scrollHeight);
 	};
 	
 	for(var pageName in pagesDict) {
