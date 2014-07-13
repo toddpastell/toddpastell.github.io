@@ -10,6 +10,9 @@
 	</head>
 	<body>
 		<pre>{{ page.scripts }}</pre>
+		{% for script in page.scripts %}
+			<pre>{{ script }}</pre>
+		{% endfor %}
 		<div class="site">
 			<div class="row">
 				<div class="col span1-4">
