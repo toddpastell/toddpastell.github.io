@@ -2,6 +2,10 @@
 layout: main
 ---
 <style>
+	#narrative p:last-child:after {
+		content: "\25AE";
+	}
+	
 	#choices .btn {
 		margin: 0 0.25em 0.25em 0;
 	}
@@ -97,18 +101,32 @@ layout: main
 	
 	var infiniteDreams = new Story({
 		'intro': {
-			text: 'Welcome to the beggining of time.',
+			text: 'You are awaken by the sounds of sirens. The scent of smoke and fire is in the air.',
 			choices: [
-				{ next: 'fight', text: 'go fight!' },
-				{ next: 'fight', text: 'go fight some more!' }
+				{ next: 'investigate', text: 'Look out the window' },
+				{ next: 'sleep', text: 'Go back to sleep' }
 			]
 		},
-		'fight': {
-			text: 'It is a heated battle... gone cold.',
+		'sleep': {
+			text: 'You dream about wandering through an orchard as wish you could stay here forever.',
 			choices: [
-				{ next: 'intro', text: 'go intro!' }	
+				{ next: 'death', text: 'Eat apple' },
+				{ next: 'death', text: 'Look at the sun' },
+				{ next: 'death', text: 'Open map' }
+			]
+		},
+		'investigate': {
+			text: 'As you peer out the window, you see firetrucks lining up across the street. Your neighbors house is burning down.',
+			choices: [
+				{ next: 'death', text: 'Put on clothes' }	
 			]
 		}
+		'death': {
+			text: '... you die!',
+			choices: [
+				{ next: 'sleep', text: 'It was just a dream' },
+				{ next: 'intro', text: 'Time continues' }
+			]
+		},
 	});
-	
 </script>
