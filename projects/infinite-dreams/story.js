@@ -10,7 +10,7 @@ function Story(pagesDict) {
 			console.warn('Page not found: ' + pageName);
 		var pageElement = page.element.cloneNode(true);
 		this.narrativeElement.appendChild(pageElement);
-		Typer(pageElement, page.text, 50);
+		Typer(pageElement, page.text, 30);
 		while(this.choicesElement.hasChildNodes()) {
 			this.choicesElement.removeChild(this.choicesElement.lastChild);
 		}
