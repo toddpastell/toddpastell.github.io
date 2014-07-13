@@ -6,11 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="/css/grid.css">
 		<link rel="stylesheet" type="text/css" href="/css/site.css">
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto:300">{% for style in page.styles %}
-		<link rel="stylesheet" type="text/css" href="{{ style }}">{% endfor %}
-{% for script in page.scripts %}
-		<script type="test/javascript" src="{{ script }}"></script>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto:300">
+{% for style in page.styles %}
+		<link rel="stylesheet" type="text/css" href="{{ style }}">
 {% endfor %}
+		{% for script in page.scripts %}<script type="test/javascript" src="{{ script }}"></script>{% endfor %}
 	</head>
 	<body>
 		<div class="site">
