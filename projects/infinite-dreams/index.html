@@ -1,24 +1,97 @@
 ---
 layout: main
 ---
-<style>
-	p {
-		animation: type 4s steps(60, end); 
-	}
-</style>
 <h2>Infinite Dreams</h2>
-<div id="story">
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa egestas risus aliquam ultricies. Proin fringilla elit at pellentesque luctus. Suspendisse laoreet massa turpis, quis rutrum augue pellentesque vel. Maecenas mollis consequat porta</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa egestas risus aliquam ultricies. Proin fringilla elit at pellentesque luctus. Suspendisse laoreet massa turpis, quis rutrum augue pellentesque vel. Maecenas mollis consequat porta</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa egestas risus aliquam ultricies. Proin fringilla elit at pellentesque luctus. Suspendisse laoreet massa turpis, quis rutrum augue pellentesque vel. Maecenas mollis consequat porta</p>
-</div>
-<a class="btn" href="#" onclick="test()">Option one</a>
-<a class="btn" href="#" onclick="test()">Option two</a>
+<div id="narrative"></div>
+<div id="choices"></div>
 <script>
-	var story = document.getElementById('story');
 	function test() {
 		var p = document.createElement('p');
 		p.innerHTML = "This is a test paragraph for the story and it should be about two lines long for testing purposes.";
 		story.appendChild(p);
 	}
+	
+	function Story(pagesDict) {
+		this.narrativeElement = document.getElementById('narrative');
+		this.choicesElement = document.getElementById('choices');
+		this.pages = {};
+		this.activePage;
+		
+		this.loadPage = function(pageName) {
+			var page = this.pages[pageName];
+			if(!page)
+				console.warn('Page not found: ' + pageName);
+			this.narrativeElement.appendChild(page.element.cloneNode(true));
+			while(this.choicesElement.hasChildNodes()) {
+				this.choicesElement.removeChild(this.choicesElement.lastChild);
+			}
+			for(var index in page.choices) {
+				var choice = page.choices[index];
+				this.choicesElement.appendChild(choice.element);
+			}
+		};
+		
+		for(var pageName in pagesDict) {
+			var pageDict = pagesDict[pageName];
+			var page = new Page(this, pageDict.text);
+			var choices = [];
+			for(var index in pageDict.choices) {
+				var choiceDict = pageDict.choices[index];
+				choices.push(new Choice(page, choiceDict.next, choiceDict.text));
+			}
+			page.setChoices(choices);
+			if(this.pages[pageName])
+				console.warn('Overwritting existing page: ' + pageName);
+			if(!this.activePage)
+				this.activePage = pageName;
+			this.pages[pageName] = page;
+		}
+		this.loadPage(this.activePage);
+	}
+	
+	function Page(story, text) {
+		this.story = story;
+		this.text = text;
+		this.choices;
+		
+		this.element = document.createElement('p');
+		this.element.innerHTML = text;
+		
+		this.setChoices = function(choices) {
+			this.choices = choices;
+		};
+	}
+	
+	function Choice(page, nextPage, text) {
+		this.page = page;
+		this.nextPage = nextPage;
+		this.text = text;
+		var choice = this;
+		
+		this.element = document.createElement('a');
+		this.element.setAttribute('class', 'btn');
+		this.element.setAttribute('href', '#' + nextPage);
+		this.element.innerHTML = text;
+		this.element.addEventListener('click', function(evt) {
+			evt.preventDefault();
+			choice.page.story.loadPage(choice.nextPage);
+		});
+	}
+	
+	var infiniteDreams = new Story({
+		'intro': {
+			text: 'Welcome to the beggining of time.',
+			choices: [
+				{ next: 'fight', text: 'go fight!' },
+				{ next: 'fight', text: 'go fight some more!' }
+			]
+		},
+		'fight': {
+			text: 'It is a heated battle... gone cold.',
+			choices: [
+				{ next: 'intro', text: 'go intro!' }	
+			]
+		}
+	});
+	
 </script>
