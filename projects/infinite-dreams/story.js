@@ -16,6 +16,8 @@ function Story(pagesDict) {
 		}
 		for(var index in page.choices) {
 			var choice = page.choices[index];
+			if(page.choices.length == 1)
+				return this.loadPage(choice.nextPage);
 			this.choicesElement.appendChild(choice.element);
 		}
 		scrollTo(0, document.body.scrollHeight);
