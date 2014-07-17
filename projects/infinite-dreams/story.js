@@ -14,12 +14,12 @@ function Story(pagesDict) {
 			this.choicesElement.removeChild(this.choicesElement.lastChild);
 		}
 		var callback;
+		var story = this;
 		for(var index in page.choices) {
 			var choice = page.choices[index];
 			if(page.choices.length == 1) {
 				callback = function() {
-					console.log(this);
-					this.loadPage(choice.nextPage);
+					story.loadPage(choice.nextPage);
 				};
 				break;
 			}
