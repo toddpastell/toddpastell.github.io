@@ -16,7 +16,7 @@ scripts: [story.js, page.js, choice.js, typer.js]
 			]
 		},
 		'introAgain': {
-			text: '',
+			text: 'A faint scratching sound begins at your bedroom door with increasing intensity. You awaken. With one blurry eye open, you check the clock. There are still thirteen minutes before your alarm is supposed to go off for work. You get the strange feeling of deja vu.',
 			choices: [
 				{ next: 'cat', text: 'Open the door' },
 				{ next: 'snooze', text: 'Go back to sleep' }
@@ -110,7 +110,13 @@ scripts: [story.js, page.js, choice.js, typer.js]
 			]
 		},
 		'river': {
-			text: '',
+			text: 'You arrive just in time to see a young woman fall into the river. She appears to have hit her head on some rocks. Without hesitation, you jump in after her and pull her to the shore.',
+			choices: [
+				{ next: 'end', text: '' }
+			]
+		},
+		'end': {
+			text: 'A few minutes pass and she regains conciousness. She seems to be fine, but you take her to the hospital to be sure. You know that you prevented a tragedy from happening today and you made a lifelong friend. The day finally has come to an end.',
 			choices: []
 		},
 		'woods': {

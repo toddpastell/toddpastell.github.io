@@ -25,7 +25,7 @@ function Story(pagesDict) {
 			}
 			this.choicesElement.appendChild(choice.element);
 		}
-		Typer(pageElement, page.text, 30, callback);
+		Typer(pageElement, page.text, 20, callback);
 		scrollTo(0, document.body.scrollHeight);
 	};
 	
