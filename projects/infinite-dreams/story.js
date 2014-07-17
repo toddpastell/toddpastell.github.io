@@ -10,16 +10,21 @@ function Story(pagesDict) {
 			console.warn('Page not found: ' + pageName);
 		var pageElement = page.element.cloneNode(true);
 		this.narrativeElement.appendChild(pageElement);
-		Typer(pageElement, page.text, 30);
 		while(this.choicesElement.hasChildNodes()) {
 			this.choicesElement.removeChild(this.choicesElement.lastChild);
 		}
+		var callback;
 		for(var index in page.choices) {
 			var choice = page.choices[index];
-			if(page.choices.length == 1)
-				return this.loadPage(choice.nextPage);
+			if(page.choices.length == 1) {
+				callback = function() {
+					this.loadPage(choice.nextPage);
+				};
+				break;
+			}
 			this.choicesElement.appendChild(choice.element);
 		}
+		Typer(pageElement, page.text, 30, callback);
 		scrollTo(0, document.body.scrollHeight);
 	};
 	
