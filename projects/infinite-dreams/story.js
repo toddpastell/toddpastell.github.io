@@ -18,6 +18,7 @@ function Story(pagesDict) {
 			var choice = page.choices[index];
 			if(page.choices.length == 1) {
 				callback = function() {
+					console.log(this);
 					this.loadPage(choice.nextPage);
 				};
 				break;
