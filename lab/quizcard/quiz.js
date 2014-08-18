@@ -40,8 +40,8 @@ function Quiz(file) {
 function Answer(quiz, answer) {
 	this.element = document.createElement('a');
 	this.element.setAttribute('class', 'btn');
-	this.element.setAttribute('href', '#' + nextPage);
-	this.element.innerHTML = text;
+	this.element.setAttribute('href', '#' + answer);
+	this.element.innerHTML = answer;
 	this.element.addEventListener('click', function(evt) {
 		evt.preventDefault();
 		quiz.checkAnswer(answer);
