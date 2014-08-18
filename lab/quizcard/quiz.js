@@ -23,7 +23,18 @@ function Quiz(file) {
 	};
 	
 	this.checkAnswer = function(answer) {
-		alert(answer);
+		if(answer.text == this.correctAnswer) {
+			answer.element.setAttribute('class', 'btn correct');
+			window.setTimeout(function() {
+				this.nextQuestion();
+			}, 1000);
+		} else {
+			answer.element.setAttribute('class', 'btn incorrect');
+			window.setTimeout(function() {
+				answer.element.setAttribute('class', 'btn');
+			}, 1000);
+		}
+			
 	};
 	
 	var xmlhttp = new XMLHttpRequest();
@@ -37,11 +48,14 @@ function Quiz(file) {
 	xmlhttp.send();
 }
 
-function Answer(quiz, answer) {
+function Answer(quiz, text) {
+	this.text = text;
+	var answer = this;
+	
 	this.element = document.createElement('a');
 	this.element.setAttribute('class', 'btn');
-	this.element.setAttribute('href', '#' + answer);
-	this.element.innerHTML = answer;
+	this.element.setAttribute('href', '#' + text);
+	this.element.innerHTML = text;
 	this.element.addEventListener('click', function(evt) {
 		evt.preventDefault();
 		quiz.checkAnswer(answer);
