@@ -25,6 +25,7 @@ function Quiz(file) {
 	this.checkAnswer = function(answer) {
 		if(answer.text == this.correctAnswer) {
 			answer.element.setAttribute('class', 'btn correct');
+			var quiz = this;
 			window.setTimeout(function() {
 				quiz.nextQuestion();
 			}, 500);
