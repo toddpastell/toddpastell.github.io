@@ -46,7 +46,7 @@ function Quiz() {
 				quiz.nextQuestion();
 			}
 		}
-		xmlhttp.open('GET', file, true);
+		xmlhttp.open('GET', filename, true);
 		xmlhttp.send();
 	};
 }
