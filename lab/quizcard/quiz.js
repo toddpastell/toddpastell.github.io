@@ -22,7 +22,7 @@ function Quiz(file) {
 		}
 	};
 	
-	this.checkAnswer(answer) {
+	this.checkAnswer = function(answer) {
 		alert(answer);
 	};
 	
