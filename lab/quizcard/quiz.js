@@ -1,5 +1,4 @@
-function Quiz(file) {
-	var quiz = this;
+function Quiz() {
 	this.questionElement = document.getElementById('question');
 	this.answersElement = document.getElementById('answers');
 	this.questions = [];
@@ -23,9 +22,9 @@ function Quiz(file) {
 	};
 	
 	this.checkAnswer = function(answer) {
+		var quiz = this;
 		if(answer.text == this.correctAnswer) {
 			answer.element.setAttribute('class', 'btn correct');
-			var quiz = this;
 			window.setTimeout(function() {
 				quiz.nextQuestion();
 			}, 500);
@@ -38,15 +37,18 @@ function Quiz(file) {
 			
 	};
 	
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			quiz.questions = JSON.parse(xmlhttp.response);
-			quiz.nextQuestion();
+	this.loadSubject = function(filename) {
+		var quiz = this;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				quiz.questions = JSON.parse(xmlhttp.response);
+				quiz.nextQuestion();
+			}
 		}
-	}
-	xmlhttp.open('GET', file, true);
-	xmlhttp.send();
+		xmlhttp.open('GET', file, true);
+		xmlhttp.send();
+	};
 }
 
 function Answer(quiz, text) {

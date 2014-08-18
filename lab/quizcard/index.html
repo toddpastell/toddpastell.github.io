@@ -4,9 +4,16 @@ styles: [quiz.css]
 scripts: [quiz.js]
 ---
 <h2>Quizcard</h2>
+<p>
+	<label>Subject</label>
+	<select>
+		<option value="indonesian_adjectives.json">Indonesian Adjectives</option>
+	</select>
+</p>
 <p id="question"></p>
 <p id="answers"></p>
 
 <script>
-	var quiz = new Quiz('indonesian_adjectives.json');
+	var quiz = new Quiz();
+	quiz.loadSubject('indonesian_adjectives.json');
 </script>
