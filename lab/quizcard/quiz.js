@@ -26,13 +26,13 @@ function Quiz(file) {
 		if(answer.text == this.correctAnswer) {
 			answer.element.setAttribute('class', 'btn correct');
 			window.setTimeout(function() {
-				this.nextQuestion();
-			}, 1000);
+				quiz.nextQuestion();
+			}, 500);
 		} else {
 			answer.element.setAttribute('class', 'btn incorrect');
 			window.setTimeout(function() {
 				answer.element.setAttribute('class', 'btn');
-			}, 1000);
+			}, 500);
 		}
 			
 	};
