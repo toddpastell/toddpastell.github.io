@@ -1,14 +1,46 @@
 ---
 import Nav from '../components/Nav.astro';
 import Layout from '../layouts/Layout.astro';
+
+const apps = [
+  {
+    name: 'Snake Tale',
+    imageUrl: '/snake-tale.png',
+    url: 'https://apps.apple.com/us/app/snake-tale/id6740222955?mt=12',
+  },
+  {
+    name: 'Paste Jar',
+    imageUrl: '/paste-jar.png',
+    url: 'https://apps.apple.com/us/app/paste-jar/id6740173058?mt=12',
+  },
+];
 ---
 
 <Layout>
   <div class='container mx-auto'>
     <Nav />
-    <article class='prose prose-zinc'>
-      <h1>Home</h1>
-      <p>Hello there. I make apps.</p>
-    </article>
+    <main class='px-4'>
+      <article class='prose prose-zinc'>
+        <h1>Home</h1>
+        <p>Hello there. I make apps. Thanks for taking a look!</p>
+      </article>
+      <section class='mt-10 flex flex-wrap gap-10'>
+        {
+          apps.map((app) => (
+            <a
+              href={app.url}
+              class='transition-transform hover:scale-105'
+              rel='noopener noreferrer external'
+              target='_blank'>
+              <img
+                class='size-48 rounded-3xl'
+                src={app.imageUrl}
+                alt={app.name}
+              />
+            </a>
+          ))
+        }
+      </section>
+    </main>
   </div>
 </Layout>

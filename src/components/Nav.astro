@@ -3,7 +3,7 @@ const pages = [
   { url: '/', label: 'Home' },
   { url: '/privacy', label: 'Privacy' },
 ];
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.routePattern;
 ---
 
 <nav class='flex gap-2 py-8'>
